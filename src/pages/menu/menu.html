@@ -1,0 +1,104 @@
+<ion-menu [content]="content">
+  <ion-header>
+    <ion-toolbar color="danger">
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content class="card-background-page">
+
+    <ion-card>
+      <img src="./assets/imgs/1.png">
+    </ion-card>
+
+    <ion-list>
+      <ion-item *ngFor="let category of categories" text-wrap (click)="openCategoryPage(category)" menuClose>
+        <ion-icon [name]="category.icon" item-left large></ion-icon>
+        <h2>
+          {{ category.name }}
+        </h2>
+        <p>
+          {{ category.description }}
+        </p>
+      </ion-item>
+
+      <ion-item-divider color="danger">Cuenta</ion-item-divider>
+      <ion-item (click)="openPage('bosky')" menuClose>
+        <ion-icon name="chatbubbles" item-left large></ion-icon>
+        <h2>
+          Bosky "El Protector del Bosque"
+        </h2>
+        <p>
+          Chatea un rato con bosky
+        </p>
+      </ion-item>
+      <ion-item (click)="openPage('santa')" menuClose>
+        <ion-icon name="snow" item-left large></ion-icon>
+        <h2>
+          Realidad Aumentada
+        </h2>
+        <p>
+          Una experiencia nueva
+        </p>
+      </ion-item>
+      <ion-item (click)="openPage('santa')" menuClose>
+        <ion-icon name="snow" item-left large></ion-icon>
+        <h2>
+          MApa del sitios
+        </h2>
+        <p>
+          Para no perderte
+        </p>
+      </ion-item>
+      <ion-item (click)="openPage('signup')" menuClose *ngIf="!loggedIn">
+        <ion-icon name="md-clipboard" item-left large></ion-icon>
+        <h2>
+          Crear una cuenta
+        </h2>
+        <p>
+          crea una cuenta y disfruta del contenido especial
+        </p>
+      </ion-item>
+
+      <ion-item (click)="openPage('login')" menuClose *ngIf="!loggedIn">
+        <ion-icon name="log-in" item-left large></ion-icon>
+        <h2>
+          Iniciar sesión
+        </h2>
+        <p>
+          Usa nombre de usuario o correo
+        </p>
+      </ion-item>
+      <ion-item (click)="openPage('santa')" menuClose>
+        <ion-icon name="snow" item-left large></ion-icon>
+        <h2>
+          Encuesta de satisfacción
+        </h2>
+        <p>
+          Calificanos por favor!
+        </p>
+      </ion-item>
+      <ion-item *ngIf="loggedIn" menuClose>
+        <ion-icon name="contact" item-left large></ion-icon>
+        <h2>{{ this.user.first_name == '' ? this.user.username : this.user.first_name || "" }}</h2>
+        <p>Welcome</p>
+      </ion-item>
+
+      <ion-item (click)="openPage('cart')" menuClose>
+        <ion-icon name="cart" item-left large></ion-icon>
+        <h2>Tu carrito</h2>
+        <p>Verifica tus articulos</p>
+      </ion-item>
+
+      <ion-item *ngIf="loggedIn" (click)="openPage('logout')" menuClose>
+        <ion-icon name="log-out" item-left large></ion-icon>
+        <h2>Cerrar sesión</h2>
+        <p>Vuelve pronto</p>
+      </ion-item>
+
+    </ion-list>
+  </ion-content>
+
+</ion-menu> 
+
+<ion-nav #content [root]="homePage"></ion-nav>
